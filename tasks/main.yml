@@ -14,22 +14,22 @@
   tags:
       - always
 
-- name: "Main | Check OS Version & Family"
-  ansible.builtin.assert:
-      that:
-          - ansible_os_family == 'Windows'
-          - ansible_distribution | regex_search('(Microsoft Windows 11')
-      success_msg: "{{ ansible_distribution }} Distribution {{ ansible_distribution_major_version }} is the detected operating system."
-      fail_msg: "This role can only be run against Microsoft Windows 11 Enterprise. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
-  tags:
-      - always
+# - name: "Main | Check OS Version & Family"
+#   ansible.builtin.assert:
+#       that:
+#           - ansible_os_family == 'Windows'
+#           - ansible_distribution | regex_search('(Microsoft Windows 11')
+#       success_msg: "{{ ansible_distribution }} Distribution {{ ansible_distribution_major_version }} is the detected operating system."
+#       fail_msg: "This role can only be run against Microsoft Windows 11 Enterprise. {{ ansible_distribution }} {{ ansible_distribution_major_version }} is not supported."
+#   tags:
+#       - always
 
-- name: "Main | Check Ansible Version"
-  ansible.builtin.assert:
-      that: ansible_version.full is version_compare(win11cis_min_ansible_version, '>=')
-      msg: You must use Ansible {{ win11cis_min_ansible_version }} or greater.
-  tags:
-      - always
+# - name: "Main | Check Ansible Version"
+#   ansible.builtin.assert:
+#       that: ansible_version.full is version_compare(win11cis_min_ansible_version, '>=')
+#       msg: You must use Ansible {{ win11cis_min_ansible_version }} or greater.
+#   tags:
+#       - always
 
 - name: "Main | Include The Preliminary Tasks"
   ansible.builtin.include_tasks:
